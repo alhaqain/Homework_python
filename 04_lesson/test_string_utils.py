@@ -25,6 +25,12 @@ def test_capitalize_negative(input_str, expected):
     assert string_utils.capitalize(input_str) == expected
 
 
+@pytest.mark.negative
+def test_capitalize_none():
+    with pytest.raises(AttributeError):
+        string_utils.capitalize(None)
+
+
 @pytest.mark.positive
 @pytest.mark.parametrize("input_str, expected", [
     ("     skypro", "skypro"),
@@ -45,6 +51,12 @@ def test_trim_negative(input_str, expected):
     assert string_utils.trim(input_str) == expected
 
 
+@pytest.mark.negative
+def test_trim_none():
+    with pytest.raises(AttributeError):
+        string_utils.trim(None)
+
+
 @pytest.mark.positive
 @pytest.mark.parametrize("input_str, input_symbol, expected", [
     ("PythonP", "P", True),
@@ -58,7 +70,7 @@ def test_contains_positive(input_str, input_symbol, expected):
 
 
 @pytest.mark.negative
-@pytest.mark.parametrize("input_str, , input_symbol, expected", [
+@pytest.mark.parametrize("input_str, input_symbol, expected", [
     ("", "d", False),
 ])
 def test_contains_negative(input_str, input_symbol, expected):
@@ -78,7 +90,7 @@ def test_delete_symbol_positive(input_str, input_symbol, expected):
 
 
 @pytest.mark.negative
-@pytest.mark.parametrize("input_str, , input_symbol, expected", [
+@pytest.mark.parametrize("input_str, input_symbol, expected", [
     ("SkyPro", "Por", "SkyPro"),
     ("SkyPro", "", "SkyPro"),
     ("", "F", ""),
